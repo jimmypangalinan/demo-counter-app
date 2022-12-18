@@ -13,7 +13,13 @@ pipeline {
         stage('Unit Testing'){
 
             steps{
-                sh 'mvn test -X'
+                sh 'mvn test'
+            }
+        }
+        stage('Integration Testing'){
+
+            steps{
+                sh 'mvn verify -DskiUnitTests'
             }
         }
     }

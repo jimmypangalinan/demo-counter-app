@@ -37,8 +37,8 @@ pipeline {
                     // withSonarQubeEnv(credentialsId: 'sonarqube-token') {
                         
                     //     sh 'mvn sonar:sonar'
-                    waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube-token'
-                    }
+                    // }
+                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api'
                 }
             }
         }        

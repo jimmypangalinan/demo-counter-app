@@ -1,47 +1,31 @@
-pipeline{
-    
+pipeline {
+
     agent any 
-    
-    stages {
-        
+
+    stages{
+
         stage('Git Checkout'){
-            
+
             steps{
-                
-                script{
-                    
-                    git branch: 'main', url: 'https://github.com/vikash-kumar01/mrdevops_javaapplication.git'
-                }
+                git 'https://github.com/jimmypangalinan/demo-counter-app.git'
             }
         }
-        stage('UNIT testing'){
-            
+        stage('Unit Testing'){
+
             steps{
-                
-                script{
-                    
-                    sh 'mvn test'
-                }
+                sh 'mvn test'
             }
         }
-        stage('Integration testing'){
-            
+        stage('Integration Testing'){
+
             steps{
-                
-                script{
-                    
-                    sh 'mvn verify -DskipUnitTests'
-                }
+                sh 'mvn verify -DskiUnitTests'
             }
         }
-        stage('Maven build'){
-            
+        stage('Maven Build'){
+
             steps{
-                
-                script{
-                    
-                    sh 'mvn clean install'
-                }
+                sh 'mvn clean install'
             }
         }
         stage('Static code analysis'){
@@ -54,20 +38,8 @@ pipeline{
                         
                         sh 'mvn clean package sonar:sonar'
                     }
-                   }
-                    
                 }
             }
-            stage('Quality Gate Status'){
-                
-                steps{
-                    
-                    script{
-                        
-                        waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube-token'
-                    }
-                }
-            }
-        }
-        
+        }        
+    }
 }

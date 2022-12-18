@@ -28,7 +28,7 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-        stage('Static code analysis'){
+        stage('SonarQube analysis'){
             steps {
                 scripts{
                     // waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api-key'

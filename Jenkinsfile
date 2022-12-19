@@ -25,7 +25,7 @@ pipeline {
         stage('Maven Build'){
 
             steps{
-                sh 'mvn clean install -Dmaven.compiler.source=11 -Dmaven.compiler.target=11'
+                sh 'mvn clean install'
             }
         }
         stage('Static code analysis'){
